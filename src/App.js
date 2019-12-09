@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PersonList from './components/PersonList';
+import styled from 'styled-components';
 import './App.css';
+
+const HomePageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 80px;
+  font-family: 'Anton', sans-serif;
+`;
 
 const App = props => {
   const [person, setPerson] = useState(null);
@@ -68,7 +77,7 @@ const App = props => {
   }
 
   const stateTest = () => {
-    console.log('current person state', { person });
+    console.log('current person state', person.gender);
   };
 
   return (
@@ -76,9 +85,9 @@ const App = props => {
       <div className="user"></div>
 
       <header className="App-header">
-        {loading ? <div>Loading...</div> : <PersonList />}
+        {loading ? <div>Loading...</div> : <PersonList person={person} />}
 
-        <p>You can create a new user</p>
+        <p>This is a random user</p>
         <button onClick={stateTest}>TEST STATE</button>
       </header>
     </div>
