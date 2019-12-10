@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import gsap from 'gsap';
+import Draggable from 'gsap/Draggable';
 
 const PersonContainer = styled.div`
   flex: 1 1 auto;
@@ -49,9 +50,9 @@ const onButtonClick = () => {
 
 const PersonCard = props => {
   const person = props.person;
-  console.log('props in PersonCard', props);
+
   return (
-    <PersonContainer onClick={onButtonClick}>
+    <PersonContainer onClick={onButtonClick} className="person">
       <PersonImg alt="person" src={person.picture.large} />
       <NameContainer className="hide">
         {person.name.first} {person.name.last}{' '}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PersonCard from './PersonCard';
 import styled from 'styled-components';
+import gsap from 'gsap';
+import Draggable from 'gsap/Draggable';
 
 const ListContainer = styled.div`
   display: flex;
@@ -11,10 +13,9 @@ const ListContainer = styled.div`
 `;
 
 const PersonList = props => {
-  //{loading ? <div>Loading...</div> : <PersonCard personName={person} />}
   return (
     <ListContainer>
-      <PersonCard {...props} />
+      <PersonCard className="person-card" {...props} />
     </ListContainer>
   );
 };

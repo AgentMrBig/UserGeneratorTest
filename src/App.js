@@ -1,21 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import PersonList from './components/PersonList';
 import styled from 'styled-components';
-import './App.css';
+import gsap from 'gsap';
+import Draggable from 'gsap/Draggable';
+import AnimatedSubmitBtn from './components/AnimatedSubmitBtn';
 
 const HomePageContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  border: solid 1px green;
   align-items: center;
-  padding: 20px 80px;
+
   font-family: 'Anton', sans-serif;
 `;
+
+const PicContainer = styled.div`
+  background-color: #b6c4df;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+`;
+
+const ReloadButton = styled.button``;
 
 const App = props => {
   const [person, setPerson] = useState(null);
   const [persons, setPersons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [debug, setDebug] = useState('msg');
+  const [randomSwitch, setRandomSwitch] = useState(true);
 
   const personHandler = person => {
     setPerson(person);
@@ -32,7 +48,27 @@ const App = props => {
 
     //personsHandler(randomMeAPI('20'));
     personHandler(randomMeAPI());
+    makeDraggable();
   }, []);
+
+  const makeDraggable = () => {
+    Draggable.create('.person');
+  };
+
+  async function newRandomMeAPI() {
+    let response = null;
+    let person = null;
+    const baseUrl = 'https://randomuser.me/api/';
+
+    response = await fetch(baseUrl);
+    person = await response.json().then(person => {
+      console.log('then response.json()', person.results[0]);
+      setPerson(person.results[0]);
+      setLoading(false);
+    });
+
+    return person;
+  }
 
   async function randomMeAPI(numUsers = '') {
     //====randomMeAPI====//
@@ -76,21 +112,30 @@ const App = props => {
     }
   }
 
-  const stateTest = () => {
-    console.log('current person state', person.gender);
+  const newRandom = () => {
+    //setRandomSwitch(!randomSwitch);
+    console.log('submit pressed');
   };
 
   return (
-    <div className="App">
+    <HomePageContainer>
       <div className="user"></div>
 
-      <header className="App-header">
-        {loading ? <div>Loading...</div> : <PersonList person={person} />}
+      <PicContainer>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          <PersonList
+            onClick={makeDraggable()}
+            className="person"
+            person={person}
+          />
+        )}
 
         <p>This is a random user</p>
-        <button onClick={stateTest}>TEST STATE</button>
-      </header>
-    </div>
+        <AnimatedSubmitBtn submitFunction={newRandomMeAPI} />
+      </PicContainer>
+    </HomePageContainer>
   );
 };
 
