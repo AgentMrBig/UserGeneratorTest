@@ -51,8 +51,9 @@ const Text = styled.div`
   letter-spacing: 8px;
   line-height: 32px;
   position: relative;
+  padding: 5px;
   top: -52px;
-  transition: transform 0.5 s;
+  transition: transform 1 s;
   &:hover {
     cursor: pointer;
     transform: scale(1.5);
@@ -75,7 +76,7 @@ const AnimatedSubmitBtn = props => {
       <SVG xmlns="http://www.w3.org/2000/svg">
         <Rect />
       </SVG>
-      <Text onMouseDown={props.submitFunction}>SUBMIT</Text>
+      <Text onMouseDown={props.submitFunction}>{props.text}</Text>
     </Svg_wrapper>
   );
 };

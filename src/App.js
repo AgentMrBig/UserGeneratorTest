@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import gsap from 'gsap';
 import Draggable from 'gsap/Draggable';
 import AnimatedSubmitBtn from './components/AnimatedSubmitBtn';
+import ThreejsSpaceBG from './components/ThreejsSpaceBG';
 
 import Facebook from './components/Facebook';
 
@@ -136,10 +137,11 @@ const App = props => {
         )}
 
         <p>This is a random user</p>
-        <AnimatedSubmitBtn submitFunction={newRandomMeAPI} />
+        <AnimatedSubmitBtn submitFunction={newRandomMeAPI} text="Generate" />
         <p>Authenticat with Facebook</p>
         <Facebook />
       </PicContainer>
+      <ThreejsSpaceBG />
     </HomePageContainer>
   );
 };

@@ -56,6 +56,7 @@ const Facebook = props => {
     console.log('picture', response.picture.data.url);
 
     setFBUserToLocalState(response);
+    //personHandler(response);
   };
 
   const componentClicked = () => console.log('clicked');
