@@ -52,7 +52,7 @@ const Text = styled.div`
   line-height: 32px;
   position: relative;
   top: -52px;
-  transition: transform 0.5s;
+  transition: transform 0.5 s;
   &:hover {
     cursor: pointer;
     transform: scale(1.5);

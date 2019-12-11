@@ -5,6 +5,8 @@ import gsap from 'gsap';
 import Draggable from 'gsap/Draggable';
 import AnimatedSubmitBtn from './components/AnimatedSubmitBtn';
 
+import Facebook from './components/Facebook';
+
 const HomePageContainer = styled.div`
   display: flex;
   border: solid 1px green;
@@ -32,6 +34,7 @@ const App = props => {
   const [loading, setLoading] = useState(true);
   const [debug, setDebug] = useState('msg');
   const [randomSwitch, setRandomSwitch] = useState(true);
+  const [loggedInFB, set_loggedInFB] = useState(false);
 
   const personHandler = person => {
     setPerson(person);
@@ -134,6 +137,8 @@ const App = props => {
 
         <p>This is a random user</p>
         <AnimatedSubmitBtn submitFunction={newRandomMeAPI} />
+        <p>Authenticat with Facebook</p>
+        <Facebook />
       </PicContainer>
     </HomePageContainer>
   );
